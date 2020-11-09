@@ -1,14 +1,13 @@
 package pt.iade.Helloworld.controllers;
-import java.util.ArrayList;
-
-import org.apache.catalina.valves.rewrite.RewriteCond;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+/*import java.util.ArrayList;*/
+/*import org.apache.catalina.valves.rewrite.RewriteCond;*/
+/*import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;*/
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+/*import org.springframework.web.bind.annotation.PostMapping;*/
+/*import org.springframework.web.bind.annotation.RequestBody;*/
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,7 +30,7 @@ public class JavaTesterController{
         }
         return clube;
     }
-    private ArrayList<CurricularUnit> units= new ArrayList<CurricularUnit>();
+   /* private ArrayList<CurricularUnit> units= new ArrayList<CurricularUnit>();
     @PostMapping(path = "/units/",produces = MediaType.APPLICATION_JSON_VALUE);
     public CurricularUnit saveUnit(@RequestBody CurricularUnit unit){
         logger.info("Added unit"+ unit.getName());
@@ -57,8 +56,8 @@ public class JavaTesterController{
         }
         double average=notas_finais/grade.size;
         return average;
-    }
-    @GetMapping(path = "access/{student}/{covid}",produces = MediaType.APPLICATION_JSON_VALUE);
+    } Tenho duvidas nesta parte*/
+    @GetMapping(path = "access/{student}/{covid}",produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean getGreeting(@PathVariable("student") boolean isStudent, @PathVariable("covid") boolean hasCovid) {
         if(isStudent && (!hasCovid)){
             return true;
