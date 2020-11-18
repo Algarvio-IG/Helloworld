@@ -1,15 +1,17 @@
 package pt.iade.Helloworld.controllers;
-/*import java.util.ArrayList;*/
-/*import org.apache.catalina.valves.rewrite.RewriteCond;*/
-/*import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;*/
+
+import java.util.ArrayList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-/*import org.springframework.web.bind.annotation.PostMapping;*/
-/*import org.springframework.web.bind.annotation.RequestBody;*/
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import pt.iade.Helloworld.models.CurricularUnit;
 
 @RestController
 @RequestMapping(path="/api/java/tester")
@@ -30,33 +32,52 @@ public class JavaTesterController{
         }
         return clube;
     }
-   /* private ArrayList<CurricularUnit> units= new ArrayList<CurricularUnit>();
-    @PostMapping(path = "/units/",produces = MediaType.APPLICATION_JSON_VALUE);
+    private Logger logger= LoggerFactory.getLogger(JavaTesterController.class);
+    private ArrayList<CurricularUnit> units= new ArrayList<CurricularUnit>();
+    @PostMapping(path = "/units",produces = MediaType.APPLICATION_JSON_VALUE)
     public CurricularUnit saveUnit(@RequestBody CurricularUnit unit){
         logger.info("Added unit"+ unit.getName());
         units.add(unit);
         return unit;
     }
+    @GetMapping(path = "/units",
+    produces= MediaType.APPLICATION_JSON_VALUE)
+    public ArrayList<CurricularUnit> getUnits() {
+        logger.info("Get "+units.size()+" Units");
+        return units;
+    } 
     private double grade[]={10.5,12,14.5};
-    private static String ucs[]={"FP","Poo","BD"};
-    @GetMapping(path="/grademax",produces = MediaType.APPLICATION_JSON_VALUE);
+    private static String ucs[] = {"FP","POO","BD"};
+    @GetMapping(path = "/grademax", produces = MediaType.APPLICATION_JSON_VALUE)
     public double grademax(){
         double max = 0;
-        for(int i=1;i<grade.size;i++){
+        for(int i=1;i < grade.length;i++){
             if(grade[i]>max){
                 max=grade[i];
             }
         }
         return max;
     }
+    @GetMapping(path ="/average", produces = MediaType.APPLICATION_JSON_VALUE)
     public double average(){
         double notas_finais=0;
-        for(int i=1 , i<grade.size;i++){
-            notas_finais=notas_finais+ grade[];
+        for(int i=1 ; i<grade.length;i++){
+            notas_finais= notas_finais+grade[i];
         }
-        double average=notas_finais/grade.size;
+        double average=notas_finais/grade.length;
         return average;
-    } Tenho duvidas nesta parte*/
+    }
+    @GetMapping(path ="/grade", produces = MediaType.APPLICATION_JSON_VALUE)
+    public double Grade() {
+        String cu = "POO";
+        double cugrade = 0;
+        for (int i = 1; i < ucs.length; i++) {
+            if (ucs[i].equals(cu)) {
+                cugrade = grade[i];
+            }
+        }
+        return cugrade;
+    }
     @GetMapping(path = "access/{student}/{covid}",produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean getGreeting(@PathVariable("student") boolean isStudent, @PathVariable("covid") boolean hasCovid) {
         if(isStudent && (!hasCovid)){
@@ -70,7 +91,7 @@ public class JavaTesterController{
         if (isStudent && type.equals("presential") && (hasCovid < 37.5 && hasCovid > 34.5)) {
             return true;
         } else {
-            return false;
+            return false; 
         }
     }
     @GetMapping(path ="/evacuation/{fire}/{numberOfCovids}/{powerShutdown}/{comeBackTime}/", produces = MediaType.APPLICATION_JSON_VALUE)
