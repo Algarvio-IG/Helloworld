@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import pt.iade.Helloworld.models.CurricularUnit;
 
 @RestController
@@ -32,6 +31,7 @@ public class JavaTesterController{
         }
         return clube;
     }
+
     private Logger logger= LoggerFactory.getLogger(JavaTesterController.class);
     private ArrayList<CurricularUnit> units= new ArrayList<CurricularUnit>();
     @PostMapping(path = "/units",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -78,6 +78,7 @@ public class JavaTesterController{
         }
         return cugrade;
     }
+
     @GetMapping(path = "access/{student}/{covid}",produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean getGreeting(@PathVariable("student") boolean isStudent, @PathVariable("covid") boolean hasCovid) {
         if(isStudent && (!hasCovid)){
@@ -94,6 +95,7 @@ public class JavaTesterController{
             return false; 
         }
     }
+
     @GetMapping(path ="/evacuation/{fire}/{numberOfCovids}/{powerShutdown}/{comeBackTime}/", produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean getEvacuation(@PathVariable("fire") boolean fire, @PathVariable("numberOfCovids") int numberOfCovids, @PathVariable("powerShutdown") boolean powerShutdown, @PathVariable("comeBackTime") int comeBack) {
         if (fire) {
@@ -105,17 +107,5 @@ public class JavaTesterController{
         }
         return false;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
